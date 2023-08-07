@@ -1,4 +1,4 @@
-# Buidl the contract
+# Build the contract
 
 cargo concordium build --out dist/fungible/module.wasm.v1 --schema-out dist/fungible/schema.bin
 
@@ -7,14 +7,16 @@ cargo concordium build --out dist/fungible/module.wasm.v1 --schema-out dist/fung
 # Deploy the contract
 
 concordium-client module deploy dist/fungible/module.wasm.v1 --sender YOUR-ACCOUNT --name YOUR-CONTRACT-NAME --grpc-port 10000 --grpc-ip node.testnet.concordium.com
-.\concordium-client module deploy dist/fungible/module.wasm.v1 --sender 3jhnM48FtLk46n74roAqmLqzauedzph8cGjYC2yDHxL7CUmGdt --name btektokencis2 --grpc-port 10000
-**Embedded Schema**
 
+.\concordium-client module deploy dist/fungible/module.wasm.v1 --sender 3jhnM48FtLk46n74roAqmLqzauedzph8cGjYC2yDHxL7CUmGdt --name btek --grpc-ip 178.33.148.36
+
+**Embedded Schema**
 If you are using schema embedded to module, remove "--schema param" inputs from the commands!
 
 # Initialize the contract
 
 concordium-client contract init MODULE-HASH --sender YOUR-ACCOUNT --energy 30000 --contract fungible-cis2 --grpc-port 10000 --grpc-ip node.testnet.concordium.com
+
 .\concordium-client contract init e92b60d15c339deae3109f67a8688c5b988b8fac7119fab4cb92bea47e9cf4b9 --sender 3jhnM48FtLk46n74roAqmLqzauedzph8cGjYC2yDHxL7CUmGdt --energy 30000 --contract fungible-cis2 --grpc-port 10000 --grpc-ip 178.33.148.36
 
 # Mint Fungible Tokens
@@ -22,14 +24,17 @@ concordium-client contract init MODULE-HASH --sender YOUR-ACCOUNT --energy 30000
 concordium-client contract update YOUR-CONTRACT-INSTANCE --entrypoint mint --parameter-json token-artifacts/mint-params.json --schema dist/fungible/schema.bin --sender YOUR-ACCOUNT --energy 6000 --grpc-port 10000 --grpc-ip node.testnet.concordium.com
 
 .\concordium-client contract update 9364 --entrypoint mint --parameter-json token-artifacts/mint-params.json --schema dist/fungible/schema.bin --sender 3jhnM48FtLk46n74roAqmLqzauedzph8cGjYC2yDHxL7CUmGdt --energy 6000 --grpc-ip 178.33.148.36
+
 # View Contract State
 
 concordium-client contract invoke YOUR-CONTRACT-INSTANCE --entrypoint view --schema dist/fungible/schema.bin --grpc-port 10000 --grpc-ip node.testnet.concordium.com
+
 .\concordium-client contract invoke 9364 --entrypoint view --schema dist/fungible/schema.bin --grpc-ip 178.33.148.36
 
 # Check Metadata
 
 concordium-client contract invoke YOUR-INDEX --entrypoint tokenMetadata --parameter-json token-artifacts/ids.json --schema dist/fungible/schema.bin --grpc-port 10001
+
 .\concordium-client contract invoke 9364 --entrypoint tokenMetadata --parameter-json token-artifacts/ids.json --schema dist/fungible/schema.bin --grpc-ip 178.33.148.36
 
 # Transfer

@@ -1,0 +1,9 @@
+{
+    "name": "BTEK",
+    "unique": false,
+    "description": "Btek Token Test on Concordium.",
+    "display": {
+        "url": "https://gateway.pinata.cloud/ipfs/QmRCRnPYxmQGxFFYuFSriYVdAvUYWhbkS7PDYEzcyHSdgT"
+    },
+    "attributes": []
+}
